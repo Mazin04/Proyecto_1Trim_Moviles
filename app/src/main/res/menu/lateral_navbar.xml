@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Motorsports">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_piloto"
+                    android:title="Pilotos"
+                    android:icon="@drawable/helmet"/>
+                <item
+                    android:id="@+id/nav_team"
+                    android:title="Escuderías"
+                    android:icon="@drawable/ferrari"/>
+                <item
+                    android:id="@+id/nav_track"
+                    android:title="Circuitos"
+                    android:icon="@drawable/track"/>
+            </group>
+        </menu>
+    </item>
+
+        <item android:title="Administrador">
+            <menu>
+                <group android:checkableBehavior="single"
+                    android:id="@+id/admin">
+                    <item
+                        android:id="@+id/nav_config"
+                        android:title="Configuración"
+                        android:icon="@drawable/config"/>
+                </group>
+            </menu>
+        </item>
+
+    <item android:title="Opciones">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/cerrar_sesion"
+                    android:title="Cerrar Sesión"
+                    android:icon="@drawable/log_out"/>
+            </group>
+        </menu>
+    </item>
+</menu>

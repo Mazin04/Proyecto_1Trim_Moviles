@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".view.login.LoginRegisterActivity"
+    android:animateLayoutChanges="true">
+
+    <ImageView
+        android:id="@+id/imgCircle"
+        android:layout_width="800dp"
+        android:layout_height="800dp"
+        app:layout_constraintBottom_toTopOf="@+id/imgBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.500"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/circle" />
+
+
+    <LinearLayout
+        android:id="@+id/llRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:animateLayoutChanges="true">
+
+        <TextView
+            android:id="@+id/txtRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="145dp"
+            android:layout_marginTop="36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Regístrate"
+            android:textSize="55sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/baloo"
+            />
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="353dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:visibility="visible"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48"
+        tools:visibility="visible"
+        android:animateLayoutChanges="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:animateLayoutChanges="true">
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtLayoutNombre"
+                android:layout_width="300dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                app:boxStrokeColor="@drawable/txt_input_border"
+                app:counterEnabled="true"
+
+                app:counterMaxLength="20"
+                app:counterTextColor="@color/black"
+                app:cursorColor="@color/black"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/black"
+                app:hintTextColor="@color/black"
+                tools:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:drawableStart="@drawable/name_logo"
+                    android:drawablePadding="10dp"
+                    android:hint="Nombre"
+                    android:maxLength="20"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    tools:layout_editor_absoluteX="89dp"
+                    tools:layout_editor_absoluteY="100dp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtLayoutUsuario"
+                android:layout_width="300dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                app:boxStrokeColor="@drawable/txt_input_border"
+                app:counterEnabled="true"
+                app:counterMaxLength="20"
+                app:counterTextColor="@color/black"
+                app:cursorColor="@color/black"
+                app:endIconMode="clear_text"
+
+                app:endIconTint="@color/black"
+                app:hintTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:drawableStart="@drawable/person_svgrepo_com"
+                    android:drawablePadding="10dp"
+                    android:hint="Usuario"
+                    android:maxLength="20"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    tools:layout_editor_absoluteX="89dp"
+                    tools:layout_editor_absoluteY="100dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtLayoutContraseña"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="300dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                app:boxStrokeColor="@drawable/txt_input_border"
+                app:boxStrokeErrorColor="#A31F2C"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+                app:counterTextColor="@color/black"
+                app:cursorColor="@color/black"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/black"
+                app:hintTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtContrasenia"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:drawableStart="@drawable/info_svgrepo_com"
+                    android:drawablePadding="10dp"
+                    android:hint="Contraseña"
+                    android:inputType="textPassword"
+                    android:maxLength="30"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    tools:layout_editor_absoluteX="89dp"
+                    tools:layout_editor_absoluteY="100dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnLoginRegistrar"
+                android:layout_width="302dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#FF0000"
+                android:text="Registrarme" />
+
+            <TextView
+                android:id="@+id/txtNew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="Tienes cuenta? Inicia sesión"
+                android:textColor="#000000" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imgBottom"
+        android:layout_width="661dp"
+        android:layout_height="648dp"
+        android:layout_marginTop="396dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.548"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/f1_trail" />
+
+    <LinearLayout
+        android:id="@+id/layoutLogos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.999">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:visibility="visible"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="20dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="347dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgTwt"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/tw" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgInsta"
+                    android:layout_width="57dp"
+                    android:layout_height="57dp"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/insta" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgGit"
+                    android:layout_width="57dp"
+                    android:layout_height="57dp"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/github" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
