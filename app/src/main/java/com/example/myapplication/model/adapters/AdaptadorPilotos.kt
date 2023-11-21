@@ -12,10 +12,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.model.entities.Piloto
+import java.util.stream.Collectors
 
 
 class AdaptadorPilotos(private val listaPilotos: ArrayList<Piloto>, contexto : Context) : RecyclerView.Adapter<AdaptadorPilotos.PilotosHolder>() {
     var context : Context = contexto
+    lateinit var listaOriginal : ArrayList<Piloto>
+
 
     class PilotosHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val foto : ImageView = itemView.findViewById(R.id.fotoPiloto)
@@ -34,6 +37,19 @@ class AdaptadorPilotos(private val listaPilotos: ArrayList<Piloto>, contexto : C
         return PilotosHolder(itemView)
     }
 
+    fun filtrado(txtBuscar : String){
+        listaOriginal.addAll(listaPilotos)
+        var longitud : Int = txtBuscar.length
+
+        if (longitud == 0){
+            listaPilotos.clear()
+            listaPilotos.addAll(listaOriginal)
+        } else {
+            var coleccion : MutableList<Piloto>? = listaPilotos.stream().filter { i -> i.getNombre().lowercase().contains(txtBuscar.lowercase())}.collect(
+                Collectors.toList())
+        }
+        notifyDataSetChanged()
+    }
     override fun getItemCount(): Int {
         return listaPilotos.size
     }

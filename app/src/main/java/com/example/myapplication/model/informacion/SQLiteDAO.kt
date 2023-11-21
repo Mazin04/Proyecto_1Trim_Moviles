@@ -73,7 +73,7 @@ class SQLiteDAO(val context : Context, name: String?, factory : SQLiteDatabase.C
         installOrUpdateIfNecessary()
         var lista = ArrayList<Piloto>()
         val db = readableDatabase
-        val cursor = db.query("Pilotos", arrayOf("*"),null, null, null, null, "campeonatos DESC, podio DESC")
+        val cursor = db.query("Pilotos", arrayOf("*"),null, null, null, null, "campeonatos DESC, podio DESC, puntos DESC")
         if (cursor != null) {
             while (cursor.moveToNext()) {
                 val piloto = Piloto(

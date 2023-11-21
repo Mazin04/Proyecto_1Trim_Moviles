@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item android:title="Motorsports">
         <menu>
             <group android:checkableBehavior="single">
@@ -19,17 +21,17 @@
         </menu>
     </item>
 
-        <item android:title="Administrador">
-            <menu>
-                <group android:checkableBehavior="single"
-                    android:id="@+id/admin">
-                    <item
-                        android:id="@+id/nav_config"
-                        android:title="Configuración"
-                        android:icon="@drawable/config"/>
-                </group>
-            </menu>
-        </item>
+    <item android:title="Administrador">
+        <menu>
+            <group android:checkableBehavior="single"
+                android:id="@+id/admin">
+                <item
+                    android:id="@+id/nav_config"
+                    android:title="Configuración"
+                    android:icon="@drawable/config"/>
+            </group>
+        </menu>
+    </item>
 
     <item android:title="Opciones">
         <menu>
