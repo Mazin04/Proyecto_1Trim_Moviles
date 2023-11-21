@@ -8,8 +8,15 @@
     tools:context=".view.motorsport.TeamsFragment"
     android:background="#CDCDCD">
 
+    <androidx.appcompat.widget.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buscadorEquipos"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recyclerEquipos"/>
+        android:id="@+id/recyclerEquipos"
+        android:layout_below="@+id/buscadorEquipos"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

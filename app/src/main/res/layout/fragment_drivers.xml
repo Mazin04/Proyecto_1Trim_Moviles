@@ -8,9 +8,15 @@
     tools:context=".view.motorsport.DriversFragment"
     android:background="#CDCDCD">
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/buscador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerPilotos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recyclerPilotos"/>
-
+        android:layout_below="@+id/buscador"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

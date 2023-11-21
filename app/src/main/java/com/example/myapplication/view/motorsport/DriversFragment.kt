@@ -21,8 +21,8 @@ import com.example.myapplication.model.entities.Piloto
 import java.sql.Driver
 
 
-class DriversFragment : Fragment() {
-
+class DriversFragment : Fragment(), SearchView.OnQueryTextListener{
+    private lateinit var searchView: SearchView
     private lateinit var recyclerView: RecyclerView
     lateinit var listaPilotos : ArrayList<Piloto>
     var controlador : AplicacionController? = null
@@ -32,45 +32,31 @@ class DriversFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_drivers, container, false)
         controlador = context?.let { AplicacionController(it) }
         recyclerView = view.findViewById(R.id.recyclerPilotos)
         recyclerView.layoutManager = LinearLayoutManager(context)
         listaPilotos = controlador!!.obtenerPilotos()
-        adaptador = context?.let { AdaptadorPilotos(listaPilotos, it) }!!
+        adaptador = context?.let { AdaptadorPilotos(listaPilotos, it, controlador!!.obtenerPilotos()) }!!
         recyclerView.adapter = adaptador
+        searchView = view.findViewById(R.id.buscador)
+        searchView.setOnQueryTextListener(this)
+        searchView.queryHint = "Busca el piloto"
 
         return view
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.search, menu)
-        val searchItem = menu.findItem(R.id.searchView)
-        val searchView = searchItem.actionView as SearchView
-        searchView.queryHint = "Buscar Piloto"
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                adaptador.filtrado(query)
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                adaptador.filtrado(newText)
-                return false
-            }
-        })
-
-        super.onCreateOptionsMenu(menu, inflater)
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null) {
+            adaptador.filtrado(query)
+        }
+        return false
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.searchView -> {
-                return true
-            }
+    override fun onQueryTextChange(newText: String?): Boolean {
+        if (newText != null) {
+            adaptador.filtrado(newText)
         }
-        return super.onOptionsItemSelected(item)
+        return false
     }
 }

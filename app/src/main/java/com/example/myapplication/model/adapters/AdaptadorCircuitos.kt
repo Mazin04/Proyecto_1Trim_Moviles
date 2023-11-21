@@ -11,12 +11,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.model.entities.Circuitos
+import com.example.myapplication.model.entities.Piloto
 import java.lang.Exception
 import java.util.ArrayList
+import java.util.stream.Collectors
 
-class AdaptadorCircuitos(private val listaCircuitos: ArrayList<Circuitos>, it: Context) : RecyclerView.Adapter<AdaptadorCircuitos.CircuitosHolder>() {
+class AdaptadorCircuitos(private val listaCircuitos: ArrayList<Circuitos>, it: Context, listaOriginal : ArrayList<Circuitos>) : RecyclerView.Adapter<AdaptadorCircuitos.CircuitosHolder>() {
     var context : Context = it
-
+    var lOriginal : ArrayList<Circuitos> = listaOriginal
     class CircuitosHolder (itemView : View) : RecyclerView.ViewHolder(itemView){
         val fotoCircuito : ImageView = itemView.findViewById(R.id.fotoCircuito)
         val nombreCircuito : TextView = itemView.findViewById(R.id.nombreCircuito)
@@ -28,6 +30,23 @@ class AdaptadorCircuitos(private val listaCircuitos: ArrayList<Circuitos>, it: C
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CircuitosHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.track_list_resultado, parent, false)
         return CircuitosHolder(itemView)
+    }
+
+    fun filtrado(txtBuscar : String){
+        var longitud : Int = txtBuscar.length
+
+        if (longitud == 0){
+            listaCircuitos.clear()
+            listaCircuitos.addAll(lOriginal)
+        } else {
+            listaCircuitos.clear()
+            listaCircuitos.addAll(lOriginal)
+            var coleccion : MutableList<Circuitos>? = listaCircuitos.stream().filter { i -> i.getNombre().lowercase().contains(txtBuscar.lowercase())}.collect(
+                Collectors.toList())
+            listaCircuitos.clear()
+            coleccion?.let { listaCircuitos.addAll(it) }
+        }
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {

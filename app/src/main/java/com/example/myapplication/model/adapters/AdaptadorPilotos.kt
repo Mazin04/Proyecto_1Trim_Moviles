@@ -15,10 +15,9 @@ import com.example.myapplication.model.entities.Piloto
 import java.util.stream.Collectors
 
 
-class AdaptadorPilotos(private val listaPilotos: ArrayList<Piloto>, contexto : Context) : RecyclerView.Adapter<AdaptadorPilotos.PilotosHolder>() {
+class AdaptadorPilotos(private val listaPilotos: ArrayList<Piloto>, contexto : Context, listaOriginal : ArrayList<Piloto>): RecyclerView.Adapter<AdaptadorPilotos.PilotosHolder>() {
     var context : Context = contexto
-    lateinit var listaOriginal : ArrayList<Piloto>
-
+    var lOriginal : ArrayList<Piloto> = listaOriginal
 
     class PilotosHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val foto : ImageView = itemView.findViewById(R.id.fotoPiloto)
@@ -38,15 +37,18 @@ class AdaptadorPilotos(private val listaPilotos: ArrayList<Piloto>, contexto : C
     }
 
     fun filtrado(txtBuscar : String){
-        listaOriginal.addAll(listaPilotos)
         var longitud : Int = txtBuscar.length
 
         if (longitud == 0){
             listaPilotos.clear()
-            listaPilotos.addAll(listaOriginal)
+            listaPilotos.addAll(lOriginal)
         } else {
+            listaPilotos.clear()
+            listaPilotos.addAll(lOriginal)
             var coleccion : MutableList<Piloto>? = listaPilotos.stream().filter { i -> i.getNombre().lowercase().contains(txtBuscar.lowercase())}.collect(
                 Collectors.toList())
+            listaPilotos.clear()
+            coleccion?.let { listaPilotos.addAll(it) }
         }
         notifyDataSetChanged()
     }

@@ -11,11 +11,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.model.entities.Escuderia
+import com.example.myapplication.model.entities.Piloto
 import java.lang.Exception
+import java.util.stream.Collectors
 
-class AdaptadorEscuderias(private val listaEscuderias : ArrayList<Escuderia>, it : Context) : RecyclerView.Adapter<AdaptadorEscuderias.EscuderiaHolder>() {
+class AdaptadorEscuderias(private val listaEscuderias : ArrayList<Escuderia>, it : Context, listaOriginal : ArrayList<Escuderia>) : RecyclerView.Adapter<AdaptadorEscuderias.EscuderiaHolder>() {
     var context : Context = it
-
+    var lOriginal : ArrayList<Escuderia> = listaOriginal
     class EscuderiaHolder (itemView : View) : RecyclerView.ViewHolder(itemView){
         val logoEquipo : ImageView = itemView.findViewById(R.id.fotoEquipo)
         val nombreEquipo : TextView = itemView.findViewById(R.id.nombreEquipo)
@@ -27,6 +29,24 @@ class AdaptadorEscuderias(private val listaEscuderias : ArrayList<Escuderia>, it
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.team_list_resultado, parent, false)
         return EscuderiaHolder(itemView)
     }
+
+    fun filtrado(txtBuscar : String){
+        var longitud : Int = txtBuscar.length
+
+        if (longitud == 0){
+            listaEscuderias.clear()
+            listaEscuderias.addAll(lOriginal)
+        } else {
+            listaEscuderias.clear()
+            listaEscuderias.addAll(lOriginal)
+            var coleccion : MutableList<Escuderia>? = listaEscuderias.stream().filter { i -> i.getNombre().lowercase().contains(txtBuscar.lowercase())}.collect(
+                Collectors.toList())
+            listaEscuderias.clear()
+            coleccion?.let { listaEscuderias.addAll(it) }
+        }
+        notifyDataSetChanged()
+    }
+
 
     override fun getItemCount(): Int {
         return listaEscuderias.size

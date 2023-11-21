@@ -5,14 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.controller.AplicacionController
 import com.example.myapplication.model.adapters.AdaptadorEscuderias
+import com.example.myapplication.model.adapters.AdaptadorPilotos
 import com.example.myapplication.model.entities.Escuderia
 
-class TeamsFragment : Fragment() {
+class TeamsFragment : Fragment(), SearchView.OnQueryTextListener {
+    private lateinit var searchView: SearchView
+    lateinit var adaptador : AdaptadorEscuderias
     private lateinit var recyclerView: RecyclerView
     var controlador : AplicacionController? = null
     lateinit var listaEquipos : ArrayList<Escuderia>
@@ -27,12 +31,24 @@ class TeamsFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerEquipos)
         val layoutManager : RecyclerView.LayoutManager = GridLayoutManager(context, 3)
         recyclerView.layoutManager = layoutManager
-        llenarAdaptadorEscuderia()
+        adaptador = context?.let { AdaptadorEscuderias(listaEquipos, it, controlador!!.obtenerEquipos()) }!!
+        recyclerView.adapter = adaptador
+        searchView = view.findViewById(R.id.buscadorEquipos)
+        searchView.setOnQueryTextListener(this)
+        searchView.queryHint = "Busca el piloto"
         return view
     }
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null) {
+            adaptador.filtrado(query)
+        }
+        return false
+    }
 
-    private fun llenarAdaptadorEscuderia() {
-        var adaptador = context?.let { AdaptadorEscuderias(listaEquipos, it) }
-        recyclerView.adapter = adaptador
+    override fun onQueryTextChange(newText: String?): Boolean {
+        if (newText != null) {
+            adaptador.filtrado(newText)
+        }
+        return false
     }
 }
