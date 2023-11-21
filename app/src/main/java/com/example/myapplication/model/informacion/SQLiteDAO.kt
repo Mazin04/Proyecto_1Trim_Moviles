@@ -12,11 +12,11 @@ import java.io.File
 import java.io.FileOutputStream
 
 class SQLiteDAO(val context : Context, name: String?, factory : SQLiteDatabase.CursorFactory?, version : Int) : InfoDAO, SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
-
     companion object {
         const val DATABASE_NAME = "Motorsport"
         const val DATABASE_VERSION = 1
         const val ASSETS_PATH = "databases"
+        var INSTALED = false
     }
 
     private fun installDatabaseFromAssets(){
@@ -40,29 +40,10 @@ class SQLiteDAO(val context : Context, name: String?, factory : SQLiteDatabase.C
     private fun installOrUpdateIfNecessary() {
         context.deleteDatabase(DATABASE_NAME)
         installDatabaseFromAssets()
-        writeDatabaseVersionInPreferences()
     }
-
-    private val preferences: SharedPreferences = context.getSharedPreferences(
-        "${context.packageName}.database_versions",
-        Context.MODE_PRIVATE
-    )
-
-    private fun writeDatabaseVersionInPreferences() {
-        preferences.edit().apply {
-            putInt(DATABASE_NAME, DATABASE_VERSION)
-            apply()
-        }
-    }
-
-    override fun getReadableDatabase(): SQLiteDatabase {
-        installOrUpdateIfNecessary()
-        return super.getReadableDatabase()
-    }
-
 
     override fun onCreate(db: SQLiteDatabase?) {
-        //Nada ya que usamos base de datos propia
+        //
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -70,10 +51,13 @@ class SQLiteDAO(val context : Context, name: String?, factory : SQLiteDatabase.C
     }
 
     override fun obtenerPilotos(): ArrayList<Piloto> {
-        installOrUpdateIfNecessary()
+        if (!SQLiteDAO.INSTALED){
+            installOrUpdateIfNecessary()
+            SQLiteDAO.INSTALED = true
+        }
         var lista = ArrayList<Piloto>()
-        val db = readableDatabase
-        val cursor = db.query("Pilotos", arrayOf("*"),null, null, null, null, "campeonatos DESC, podio DESC, puntos DESC")
+        val db = writableDatabase
+        val cursor = db.query("pilotos", arrayOf("*"),null, null, null, null, "campeonatos DESC, podio DESC, puntos DESC")
         if (cursor != null) {
             while (cursor.moveToNext()) {
                 val piloto = Piloto(
@@ -91,13 +75,13 @@ class SQLiteDAO(val context : Context, name: String?, factory : SQLiteDatabase.C
             }
         }
         cursor.close()
+        db.close()
         return lista
     }
 
     override fun obtenerCircuitos(): ArrayList<Circuitos> {
-            installOrUpdateIfNecessary()
             var lista = ArrayList<Circuitos>()
-            val db = readableDatabase
+            val db = writableDatabase
             val cursor = db.query("circuitos", arrayOf("*"),null, null, null, null, null)
             if (cursor != null) {
                 while (cursor.moveToNext()) {
@@ -112,13 +96,13 @@ class SQLiteDAO(val context : Context, name: String?, factory : SQLiteDatabase.C
                 }
             }
             cursor.close()
-            return lista
+            db.close()
+        return lista
         }
 
     override fun obtenerEquipos(): ArrayList<Escuderia> {
-        installOrUpdateIfNecessary()
         var lista = ArrayList<Escuderia>()
-        val db = readableDatabase
+        val db = writableDatabase
         val cursor = db.query("equipos", arrayOf("*"), null, null, null, null, "n_equipo")
         if(cursor != null) {
             while (cursor.moveToNext()){
@@ -132,6 +116,8 @@ class SQLiteDAO(val context : Context, name: String?, factory : SQLiteDatabase.C
             }
         }
         cursor.close()
+        db.close()
+
         return lista
     }
 
@@ -139,23 +125,8 @@ class SQLiteDAO(val context : Context, name: String?, factory : SQLiteDatabase.C
         TODO("Not yet implemented")
     }
 
-    override fun add(escuderia: Escuderia) {
-        TODO("Not yet implemented")
-    }
-
-    override fun add(circuitos: Circuitos) {
-        TODO("Not yet implemented")
-    }
 
     override fun modify(piloto: Piloto) {
-        TODO("Not yet implemented")
-    }
-
-    override fun modify(escuderia: Escuderia) {
-        TODO("Not yet implemented")
-    }
-
-    override fun modify(circuitos: Circuitos) {
         TODO("Not yet implemented")
     }
 
@@ -163,11 +134,26 @@ class SQLiteDAO(val context : Context, name: String?, factory : SQLiteDatabase.C
         TODO("Not yet implemented")
     }
 
-    override fun delete(escuderia: Escuderia) {
-        TODO("Not yet implemented")
+    override fun obtenerNombrePilotos(): ArrayList<String> {
+        var lista = ArrayList<String>()
+        val db = writableDatabase
+        val cursor = db?.query("pilotos", arrayOf("nombre"), null, null, null, null, "nombre")
+        if (cursor != null) {
+            while (cursor.moveToNext()){
+                val nombre = cursor.getString(0)
+                lista.add(nombre)
+            }
+        }
+        db.close()
+        return lista
     }
 
-    override fun delete(circuitos: Circuitos) {
-        TODO("Not yet implemented")
+    override fun eliminarPiloto(nombre: String) {
+        val db = writableDatabase
+        val sql = "DELETE FROM pilotos WHERE nombre = ?"
+        val statement = db.compileStatement(sql)
+        statement.bindString(1, nombre)
+        statement.executeUpdateDelete()
+        db.close()
     }
 }

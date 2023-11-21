@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="Insertar"
+        android:icon="@drawable/ic_mas"
+        android:id="@+id/insertarPiloto"
+        app:cnb_iconColor="#C9FB90"/>
+    <item android:title="Eliminar"
+        android:icon="@drawable/ic_menos"
+        android:id="@+id/eliminarPiloto"
+        app:cnb_iconColor="#89DAFF"/>
+    <item android:title="Modificar"
+        android:icon="@drawable/ic_edit"
+        android:id="@+id/modificarPiloto"
+        app:cnb_iconColor="#DCB4FF"/>
+</menu>

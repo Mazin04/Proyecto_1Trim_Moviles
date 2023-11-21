@@ -96,5 +96,13 @@ class AplicacionController(context : Context) : Application() {
     fun obtenerEquipos(): ArrayList<Escuderia> {
         return daoInfo.obtenerEquipos()
     }
+
+    fun obtenerNombrePilotos(): ArrayList<String> {
+        return daoInfo.obtenerNombrePilotos()
+    }
+
+    fun eliminarPiloto(nombre : String) {
+        daoInfo.eliminarPiloto(nombre)
+    }
 }
 

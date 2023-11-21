@@ -9,12 +9,8 @@ interface InfoDAO {
     public fun obtenerCircuitos() : ArrayList<Circuitos>
     public fun obtenerEquipos() : ArrayList<Escuderia>
     public fun add(piloto : Piloto)
-    public fun add(escuderia : Escuderia)
-    public fun add(circuitos : Circuitos)
     public fun modify(piloto : Piloto)
-    public fun modify(escuderia : Escuderia)
-    public fun modify(circuitos : Circuitos)
     public fun delete(piloto : Piloto)
-    public fun delete(escuderia : Escuderia)
-    public fun delete(circuitos : Circuitos)
+    public fun obtenerNombrePilotos(): ArrayList<String>
+    public fun eliminarPiloto(nombre: String)
 }

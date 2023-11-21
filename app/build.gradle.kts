@@ -56,4 +56,5 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(libs.lottie)
+    implementation(libs.chip.navigation.bar)
 }

@@ -11,12 +11,14 @@
     <androidx.appcompat.widget.SearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buscadorEquipos"/>
+        android:id="@+id/buscadorEquipos"
+        android:background="@android:color/transparent"
+        android:elevation="30dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerEquipos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recyclerEquipos"
         android:layout_below="@+id/buscadorEquipos"
         android:layout_alignParentBottom="true"/>
 </RelativeLayout>

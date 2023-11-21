@@ -65,7 +65,6 @@ class AdaptadorCircuitos(private val listaCircuitos: ArrayList<Circuitos>, it: C
         holder.paisCircuito.text = currentItem.getPais()
         holder.longitudCircuito.text = currentItem.getLongitud().toString() + " km"
         holder.gpCircuito.text = currentItem.getGPs().toString()
-
         setAnimation(holder.itemView, position)
 
     }
