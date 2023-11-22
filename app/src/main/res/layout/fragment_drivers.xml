@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.motorsport.DriversFragment"
-    android:background="#CDCDCD">
+    android:background="#ffffff">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/buscador"
@@ -18,5 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/buscador"
+        android:background="@color/white"
         android:layout_alignParentBottom="true"/>
 </RelativeLayout>

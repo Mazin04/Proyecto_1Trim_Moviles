@@ -12,10 +12,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.345">
+        app:layout_constraintVertical_bias="0.250">
 
         <TextView
             android:id="@+id/textView2"
@@ -57,16 +57,17 @@
 
         <Button
             android:id="@+id/btnDelete"
+            style="@style/Widget.Material3.Button.ElevatedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="30dp"
-            android:text="Eliminar"
             android:backgroundTint="@color/red"
-            style="@style/Widget.Material3.Button.ElevatedButton"
-            android:textColor="@color/white"
-            android:textStyle="normal"
             android:fontFamily="@font/baloo"
-            android:textSize="20sp"/>
+            android:text="Eliminar"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+
 
     </LinearLayout>
 

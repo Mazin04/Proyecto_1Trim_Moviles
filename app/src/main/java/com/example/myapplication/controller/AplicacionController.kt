@@ -104,5 +104,9 @@ class AplicacionController(context : Context) : Application() {
     fun eliminarPiloto(nombre : String) {
         daoInfo.eliminarPiloto(nombre)
     }
+
+    fun instalarDDBB() {
+        daoInfo.installDatabaseFromAssets()
+    }
 }
 

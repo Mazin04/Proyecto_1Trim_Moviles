@@ -16,10 +16,10 @@ class SQLiteDAO(val context : Context, name: String?, factory : SQLiteDatabase.C
         const val DATABASE_NAME = "Motorsport"
         const val DATABASE_VERSION = 1
         const val ASSETS_PATH = "databases"
-        var INSTALED = false
+        var INSTALADO = false
     }
 
-    private fun installDatabaseFromAssets(){
+    override public fun installDatabaseFromAssets(){
         val inputStream = context.assets.open("${SQLiteDAO.ASSETS_PATH}/${SQLiteDAO.DATABASE_NAME}.db")
 
         try {
@@ -51,10 +51,6 @@ class SQLiteDAO(val context : Context, name: String?, factory : SQLiteDatabase.C
     }
 
     override fun obtenerPilotos(): ArrayList<Piloto> {
-        if (!SQLiteDAO.INSTALED){
-            installOrUpdateIfNecessary()
-            SQLiteDAO.INSTALED = true
-        }
         var lista = ArrayList<Piloto>()
         val db = writableDatabase
         val cursor = db.query("pilotos", arrayOf("*"),null, null, null, null, "campeonatos DESC, podio DESC, puntos DESC")

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.motorsport.TeamsFragment"
-    android:background="#CDCDCD">
+    android:background="#ffffff">
 
     <androidx.appcompat.widget.SearchView
         android:layout_width="match_parent"
@@ -20,5 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/buscadorEquipos"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"/>
 </RelativeLayout>

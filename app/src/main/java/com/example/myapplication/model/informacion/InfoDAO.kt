@@ -13,4 +13,5 @@ interface InfoDAO {
     public fun delete(piloto : Piloto)
     public fun obtenerNombrePilotos(): ArrayList<String>
     public fun eliminarPiloto(nombre: String)
+    public fun installDatabaseFromAssets()
 }

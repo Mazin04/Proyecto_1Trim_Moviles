@@ -25,6 +25,7 @@ import com.example.myapplication.model.entities.Strings
 import com.example.myapplication.view.MainActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import java.io.File
 
 class LoginRegisterActivity : AppCompatActivity() {
     // Agrega el controlador y controla elementos del telefono
@@ -53,6 +54,10 @@ class LoginRegisterActivity : AppCompatActivity() {
         controlador = AplicacionController(this)
         activity = this
 
+        var existe = existeDDBB(this, "Motorsport")
+        if(!existe){
+            controlador!!.instalarDDBB()
+        }
         // Botones pantalla
         imgGit = findViewById(R.id.imgGit)
         imgGit.setOnClickListener { view ->
@@ -68,7 +73,6 @@ class LoginRegisterActivity : AppCompatActivity() {
         imgInsta.setOnClickListener { view ->
             controlador!!.abrirEnlace(Strings.URL_INSTA.toString())
         }
-
 
         //Easter EGG
         llRegister = findViewById(R.id.llRegister)
@@ -243,6 +247,12 @@ class LoginRegisterActivity : AppCompatActivity() {
         }).setNegativeButton("No", DialogInterface.OnClickListener { dialog, which ->
             dialog.dismiss()
         }).show()
+    }
+
+
+    fun existeDDBB(context : Context, nombre : String) : Boolean{
+        var fileDDBB : File = context.getDatabasePath(nombre)
+        return fileDDBB.exists()
     }
 
 }
