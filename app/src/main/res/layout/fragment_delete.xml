@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.config.deleteFragment">
+    tools:context=".view.config.deleteFragment"
+    android:id="@+id/FragmentModify">
 
     <LinearLayout
         android:layout_width="300dp"
@@ -14,8 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.250">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView2"
@@ -67,6 +67,20 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="normal" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="250dp"
+            android:layout_height="298dp"
+            android:layout_gravity="center"
+            app:strokeColor="@color/red"
+            app:strokeWidth="3dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/fotoPilotoEliminar"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:src="@drawable/d_albon" />
+        </com.google.android.material.card.MaterialCardView>
 
 
     </LinearLayout>

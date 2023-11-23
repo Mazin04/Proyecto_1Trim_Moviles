@@ -18,6 +18,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.core.view.removeItemAt
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import com.example.myapplication.R
 import com.example.myapplication.controller.AplicacionController
 import com.example.myapplication.view.login.LoginRegisterActivity
@@ -82,15 +83,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when(menuItem.itemId){
             R.id.nav_piloto -> {
                 toolbarText!!.setText("Pilotos")
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DriversFragment()).commit()
+                cargarFragment(DriversFragment())
             }
             R.id.nav_team -> {
                 toolbarText!!.setText("Escuderías")
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TeamsFragment()).commit()
+                cargarFragment(TeamsFragment())
             }
             R.id.nav_track -> {
                 toolbarText!!.setText("Circuitos")
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TracksFragment()).commit()
+                cargarFragment(TracksFragment())
             }
             R.id.nav_config -> {
                 if(!AplicacionController.rol.equals("admin")){
@@ -98,7 +99,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     Toast.makeText(applicationContext, "No eres administrador, contacte con @rubengs04", Toast.LENGTH_SHORT).show()
                 } else {
                     toolbarText!!.setText("Configuración")
-                    supportFragmentManager.beginTransaction().replace(R.id.fragment_container, configFragment()).commit()
+                    cargarFragment(configFragment())
                 }
             }
             R.id.cerrar_sesion -> {
@@ -115,5 +116,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         drawerLayout.closeDrawer(GravityCompat.START, true)
         return true
+    }
+    private fun cargarFragment(fragmento : Fragment){
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragmento).commit()
+        overridePendingTransition(R.anim.fade_out, R.anim.fade_in)
     }
 }

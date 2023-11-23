@@ -3,13 +3,268 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.config.addFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.config.addFragment"
+    android:id="@+id/FragmentAdd">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:gravity="center"/>
+    <LinearLayout
+        android:layout_width="360dp"
+        android:layout_height="650dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.500">
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutInsertarNombrePiloto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            app:boxStrokeColor="@drawable/txt_input_border"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:counterTextColor="@color/black"
+            app:cursorColor="@color/black"
+            app:endIconMode="clear_text"
+
+            app:endIconTint="@color/black"
+            app:hintTextColor="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtInsertarNombrePiloto"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:drawableStart="@drawable/person_svgrepo_com"
+                android:drawablePadding="10dp"
+                android:hint="Nombre del piloto"
+                android:maxLength="20"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtLayoutInsertarNumeroPiloto"
+                android:layout_width="137dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:orientation="vertical"
+                app:boxStrokeColor="@drawable/txt_input_border"
+                app:counterEnabled="true"
+                app:counterMaxLength="2"
+                app:counterTextColor="@color/black"
+                app:cursorColor="@color/black"
+                app:endIconMode="clear_text"
+
+                app:endIconTint="@color/black"
+                app:hintTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtInsertarNumeroPiloto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/person_svgrepo_com"
+                    android:drawablePadding="10dp"
+                    android:hint="Nº"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtLayoutInsertarPuntos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:boxStrokeColor="@drawable/txt_input_border"
+                app:counterEnabled="true"
+                app:counterMaxLength="4"
+                app:counterTextColor="@color/black"
+                app:cursorColor="@color/black"
+                app:endIconMode="clear_text"
+
+                app:endIconTint="@color/black"
+                app:hintTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtInsertarPuntosPiloto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/person_svgrepo_com"
+                    android:drawablePadding="10dp"
+                    android:hint="Puntos"
+                    android:inputType="numberDecimal"
+                    android:maxLength="4"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutInsertarCampeonatosPiloto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            app:boxStrokeColor="@drawable/txt_input_border"
+            app:counterEnabled="true"
+            app:counterMaxLength="2"
+            app:counterTextColor="@color/black"
+            app:cursorColor="@color/black"
+            app:endIconMode="clear_text"
+
+            app:endIconTint="@color/black"
+            app:hintTextColor="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtInsertarCampeonatosPiloto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/person_svgrepo_com"
+                android:drawablePadding="10dp"
+                android:hint="Campeonatos"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtLayoutInsertarVictorias"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:boxStrokeColor="@drawable/txt_input_border"
+                app:counterEnabled="true"
+                app:counterMaxLength="3"
+                app:counterTextColor="@color/black"
+                app:cursorColor="@color/black"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/black"
+                android:layout_marginEnd="5dp"
+
+                app:hintTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtInsertarVictoriasPiloto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/person_svgrepo_com"
+                    android:drawablePadding="10dp"
+                    android:hint="Victorias"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtLayoutInsertarPodios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:boxStrokeColor="@drawable/txt_input_border"
+                app:counterEnabled="true"
+                app:counterMaxLength="3"
+                app:counterTextColor="@color/black"
+                app:cursorColor="@color/black"
+                app:endIconMode="clear_text"
+
+                app:endIconTint="@color/black"
+                app:hintTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtInsertarPodiosPiloto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/person_svgrepo_com"
+                    android:drawablePadding="10dp"
+                    android:hint="Podios"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutInsertarGPPiloto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:boxStrokeColor="@drawable/txt_input_border"
+            app:counterEnabled="true"
+            app:counterMaxLength="4"
+            app:counterTextColor="@color/black"
+            app:cursorColor="@color/black"
+            app:endIconMode="clear_text"
+
+            app:endIconTint="@color/black"
+            app:hintTextColor="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtInsertarGPPiloto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/person_svgrepo_com"
+                android:drawablePadding="10dp"
+                android:hint="Grandes Premios"
+                android:inputType="number"
+                android:maxLength="4"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@drawable/txt_input_border"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            <AutoCompleteTextView
+                android:id="@+id/selectInsertTeamDriver"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/amaranth"
+                android:inputType="none"
+                android:text="Huola"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnAdd"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/red"
+            android:fontFamily="@font/baloo"
+            android:text="Agregar piloto"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

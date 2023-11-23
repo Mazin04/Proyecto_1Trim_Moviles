@@ -85,6 +85,8 @@ class AplicacionController(context : Context) : Application() {
         return daoUsuario.obtenerRol(username)
     }
 
+    // Acceso a la BBDD de pilotos
+
     fun obtenerPilotos(): ArrayList<Piloto> {
         return daoInfo.obtenerPilotos()
     }
@@ -107,6 +109,22 @@ class AplicacionController(context : Context) : Application() {
 
     fun instalarDDBB() {
         daoInfo.installDatabaseFromAssets()
+    }
+
+    fun obtenerFoto(nombre: String): String {
+        return daoInfo.obtenerFoto(nombre)
+    }
+
+    fun obtenerPiloto(nombre: String): Piloto {
+        return daoInfo.obtenerPiloto(nombre)
+    }
+
+    fun modify(piloto: Piloto, nombreOriginal: String) {
+        daoInfo.modify(piloto, nombreOriginal)
+    }
+
+    fun add(piloto: Piloto) {
+        daoInfo.add(piloto)
     }
 }
 

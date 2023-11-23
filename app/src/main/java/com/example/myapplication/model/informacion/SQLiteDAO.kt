@@ -1,5 +1,6 @@
 package com.example.myapplication.model.informacion
 
+import android.content.ContentValues
 import android.content.Context
 import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
@@ -118,16 +119,34 @@ class SQLiteDAO(val context : Context, name: String?, factory : SQLiteDatabase.C
     }
 
     override fun add(piloto: Piloto) {
-        TODO("Not yet implemented")
+        val db = writableDatabase
+        val values = ContentValues()
+        values.put("nombre", piloto.getNombre())
+        values.put("numero", piloto.getNumero())
+        values.put("puntos", piloto.getPuntos())
+        values.put("campeonatos", piloto.getCampeonatos())
+        values.put("victorias", piloto.getVictorias())
+        values.put("podio", piloto.getPodios())
+        values.put("n_equipo", piloto.getNEquipo())
+        values.put("gps", piloto.getGrandesPremios())
+        values.put("foto", piloto.getFoto())
+        db.insert("pilotos", null, values)
+        db.close()
+    }
+
+    override fun eliminarPiloto(nombre: String) {
+        val db = writableDatabase
+        val sql = "DELETE FROM pilotos WHERE nombre = ?"
+        val statement = db.compileStatement(sql)
+        statement.bindString(1, nombre)
+        statement.executeUpdateDelete()
+        db.close()
     }
 
 
-    override fun modify(piloto: Piloto) {
-        TODO("Not yet implemented")
-    }
-
-    override fun delete(piloto: Piloto) {
-        TODO("Not yet implemented")
+    override fun modify(piloto: Piloto, nombreOriginal : String) {
+        eliminarPiloto(nombreOriginal)
+        add(piloto)
     }
 
     override fun obtenerNombrePilotos(): ArrayList<String> {
@@ -144,12 +163,39 @@ class SQLiteDAO(val context : Context, name: String?, factory : SQLiteDatabase.C
         return lista
     }
 
-    override fun eliminarPiloto(nombre: String) {
+    override fun obtenerFoto(nombre: String): String {
+        var foto : String = ""
         val db = writableDatabase
-        val sql = "DELETE FROM pilotos WHERE nombre = ?"
-        val statement = db.compileStatement(sql)
-        statement.bindString(1, nombre)
-        statement.executeUpdateDelete()
+        var cursor = db.rawQuery("SELECT foto FROM pilotos WHERE nombre = ?", arrayOf(nombre))
+        if (cursor.moveToFirst()){
+            foto = cursor.getString(0)
+        }
+
+        return foto
+    }
+
+    override fun obtenerPiloto(nombre: String): Piloto {
+        val db = writableDatabase
+        val sql = "SELECT * FROM pilotos WHERE nombre = ?"
+        lateinit var piloto : Piloto
+        val cursor = db.rawQuery(sql, arrayOf(nombre))
+        if(cursor != null) {
+            while (cursor.moveToNext()){
+                piloto = Piloto(
+                    cursor.getString(0),
+                    cursor.getInt(1),
+                    cursor.getInt(2),
+                    cursor.getInt(3),
+                    cursor.getInt(4),
+                    cursor.getInt(5),
+                    cursor.getString(6),
+                    cursor.getInt(7),
+                    cursor.getString(8)
+                )
+            }
+        }
+        cursor.close()
         db.close()
+        return piloto
     }
 }

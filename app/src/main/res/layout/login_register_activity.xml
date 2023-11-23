@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".view.login.LoginRegisterActivity"
-    android:animateLayoutChanges="true">
+    android:animateLayoutChanges="true"
+    android:id="@+id/LoginRegister">
 
     <ImageView
         android:id="@+id/imgCircle"
@@ -78,16 +79,17 @@
                 android:layout_height="75dp"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
+                android:visibility="visible"
                 app:boxStrokeColor="@drawable/txt_input_border"
-                app:counterEnabled="true"
 
+                app:counterEnabled="true"
                 app:counterMaxLength="20"
                 app:counterTextColor="@color/black"
                 app:cursorColor="@color/black"
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/black"
                 app:hintTextColor="@color/black"
-                tools:visibility="gone">
+                tools:visibility="visible">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtNombre"
@@ -100,7 +102,7 @@
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
                     tools:layout_editor_absoluteX="89dp"
-                    tools:layout_editor_absoluteY="100dp"/>
+                    tools:layout_editor_absoluteY="100dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

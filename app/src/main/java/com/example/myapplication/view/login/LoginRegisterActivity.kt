@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
@@ -42,6 +43,7 @@ class LoginRegisterActivity : AppCompatActivity() {
     private lateinit var btnLoginRegister : Button
     private lateinit var msgLoginRegister : TextView
     private lateinit var llRegister : LinearLayout
+    private lateinit var view : View
 
     //Variables propias
     private var reproduciendo : Boolean = false
@@ -57,6 +59,11 @@ class LoginRegisterActivity : AppCompatActivity() {
         var existe = existeDDBB(this, "Motorsport")
         if(!existe){
             controlador!!.instalarDDBB()
+        }
+
+        view = findViewById(R.id.LoginRegister)
+        view.setOnClickListener {
+            cerrarTeclado(view)
         }
         // Botones pantalla
         imgGit = findViewById(R.id.imgGit)
