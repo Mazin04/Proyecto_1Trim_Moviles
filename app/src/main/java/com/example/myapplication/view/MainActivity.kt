@@ -60,6 +60,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             navigationView.setCheckedItem(R.id.nav_piloto)
         }
 
+        val menu = navigationView.menu
+        val configItem = menu.findItem(R.id.nav_config)
+        if(!AplicacionController.rol.equals("admin")){
+            configItem.isVisible = false
+        } else {
+            configItem.isVisible = true
+        }
+
     }
 
     @SuppressLint("MissingSuperCall")
@@ -94,13 +102,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 cargarFragment(TracksFragment())
             }
             R.id.nav_config -> {
-                if(!AplicacionController.rol.equals("admin")){
-                    navigationView.setCheckedItem(R.id.nav_piloto)
-                    Toast.makeText(applicationContext, "No eres administrador, contacte con @rubengs04", Toast.LENGTH_SHORT).show()
-                } else {
-                    toolbarText!!.setText("Configuración")
-                    cargarFragment(configFragment())
-                }
+                toolbarText!!.setText("Configuración")
+                cargarFragment(configFragment())
             }
             R.id.cerrar_sesion -> {
                 val builder = AlertDialog.Builder(this)
