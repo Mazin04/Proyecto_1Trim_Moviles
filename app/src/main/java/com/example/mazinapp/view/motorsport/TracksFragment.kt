@@ -74,18 +74,34 @@ class TracksFragment : Fragment(), SearchView.OnQueryTextListener {
         listaCircuitos = controlador!!.obtenerCircuitos()
 
         // Configurar el RecyclerView para mostrar la lista de circuitos
+        configurarRecyclerView(view)
+
+        // Configurar el componente de búsqueda
+        configurarBuscador(view)
+        return view
+    }
+
+    /**
+     * Adquiere el recycler view y le configura con su adaptador correspondiente
+     * para que se muestra la lista de circuitos.
+     * @param view vista con la que se trabaja
+     */
+    private fun configurarRecyclerView(view : View) {
         recyclerView = view.findViewById(R.id.recyclerCircuitos)
         val layoutManager : RecyclerView.LayoutManager = GridLayoutManager(context,2)
         recyclerView.layoutManager = layoutManager
         adaptador = context?.let { AdaptadorCircuitos(listaCircuitos, it, controlador!!.obtenerCircuitos()) }!!
         recyclerView.adapter = adaptador
+    }
 
-        // Configurar el componente de búsqueda
+    /**
+     * Configura el funcionamiento del buscador.
+     * @param view vista con la que se trabaja
+     */
+    private fun configurarBuscador(view : View) {
         searchView = view.findViewById(R.id.buscadorCircuito)
         searchView.setOnQueryTextListener(this)
         searchView.queryHint = "Busca el circuito"
-
-        return view
     }
 
     /**

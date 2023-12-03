@@ -39,22 +39,31 @@ class configFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflar el diseño del fragmento
         var view : View = inflater.inflate(R.layout.fragment_config, container, false)
+
         // Configurar el menú de navegación.
         btmNavBar = view.findViewById(R.id.bottomNavigationView)
         btmNavBar.setItemSelected(R.id.insertarPiloto)
         cargarFragmento(addFragment())
-        // Manejar la selección de elementos en el menú de navegación.
+
         btmNavBar.setOnItemSelectedListener {
-            when (it) {
-                R.id.insertarPiloto -> cargarFragmento(addFragment())
-                R.id.eliminarPiloto -> cargarFragmento(deleteFragment())
-                R.id.modificarPiloto -> cargarFragmento(modifyFragment())
-            }
+            cambiarFragmentoEnSeleccion(it)
         }
         return view
+    }
+
+    /**
+     * Configura el click en la barra de navegación para cambiar los fragmentos, este método llama
+     * a [cargarFragmento]
+     */
+    private fun cambiarFragmentoEnSeleccion(it: Int) {
+        when (it) {
+            R.id.insertarPiloto -> cargarFragmento(addFragment())
+            R.id.eliminarPiloto -> cargarFragmento(deleteFragment())
+            R.id.modificarPiloto -> cargarFragmento(modifyFragment())
+        }
     }
 
     /**

@@ -40,7 +40,6 @@ android {
             separateInheritedMembers = true
             mergeImplicitExpectActualDeclarations = false
             suppressObviousFunctions = true
-
             dokkaSourceSets {
                 named("main") {
                     displayName.set("FormulaStats por Rubén García")

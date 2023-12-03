@@ -77,11 +77,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
 
         // Inicializar el controlador de la aplicación
-
         controlador = AplicacionController(this)
         activity = this
 
-        // Configuración de la barra de herramientas y la vista de navegación lateral
+        cargarNavBar()
+        cargaIniciar(savedInstanceState)
+        configurarAparienciaNavBar()
+    }
+
+    /**
+     * Configura la barra lateral y su apariencia durante la instancia de esta clase.
+     */
+    private fun cargarNavBar() {
         toolbar = findViewById(R.id.toolbar)
         toolbarText = findViewById(R.id.toolbarText)
         setSupportActionBar(toolbar)
@@ -90,21 +97,29 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
         navigationView.bringToFront()
-        var toggle : ActionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        var toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+    }
 
-        // Cargar el fragmento inicial al iniciar la actividad
+    /**
+     * Se encarga de iniciar un fragmento según se inicia sesión.
+     */
+    private fun cargaIniciar(savedInstanceState: Bundle?) {
         if (savedInstanceState == null){
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DriversFragment()).commit()
             navigationView.setCheckedItem(R.id.nav_piloto)
         }
+    }
 
-        // Ocultar la opción de configuración si el rol no es "admin"
+    /**
+     * Método invocado al crearse la barra de navegación que controla si aparece la opción de configuración
+     * en base de si el usuario es admin o no.
+     */
+    private fun configurarAparienciaNavBar() {
         val menu = navigationView.menu
         val configItem = menu.findItem(R.id.nav_config)
         configItem.isVisible = AplicacionController.rol.equals("admin")
-
     }
 
     /**
@@ -132,7 +147,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     /**
-     * Método invocado al seleccionar un elemento en la vista de navegación lateral.
+     * Método invocado al seleccionar un elemento en la vista de navegación lateral
+     * el cual controla el item seleccionado en la barra lateral para luego cargarlo.
      *
      * @param menuItem El elemento de menú seleccionado.
      * @return `true` si se maneja la selección del elemento; de lo contrario, `false`.
@@ -140,23 +156,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when(menuItem.itemId){
             R.id.nav_piloto -> {
+                drawerLayout.closeDrawer(GravityCompat.START, true)
                 toolbarText!!.setText("Pilotos")
                 cargarFragment(DriversFragment())
             }
             R.id.nav_team -> {
+                drawerLayout.closeDrawer(GravityCompat.START, true)
                 toolbarText!!.setText("Escuderías")
                 cargarFragment(TeamsFragment())
             }
             R.id.nav_track -> {
+                drawerLayout.closeDrawer(GravityCompat.START, true)
                 toolbarText!!.setText("Circuitos")
                 cargarFragment(TracksFragment())
             }
             R.id.nav_config -> {
+                drawerLayout.closeDrawer(GravityCompat.START, true)
                 toolbarText!!.setText("Configuración")
                 cargarFragment(configFragment())
             }
             R.id.cerrar_sesion -> {
-                // Mostrar un diálogo de confirmación al intentar cerrar sesión
+                drawerLayout.closeDrawer(GravityCompat.START, true)
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("¿Seguro que desea cerrar sesión?")
                     .setPositiveButton("Sí", DialogInterface.OnClickListener { dialog, which ->
@@ -168,7 +188,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     }).show()
             }
         }
-        drawerLayout.closeDrawer(GravityCompat.START, true)
         return true
     }
     /**
