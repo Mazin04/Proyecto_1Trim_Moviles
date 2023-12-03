@@ -10,6 +10,7 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
         google()
+        maven("https://dl.bintray.com/kotlin/dokka")
     }
 }
 dependencyResolutionManagement {
@@ -18,6 +19,8 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter()
+        maven("https://dl.bintray.com/kotlin/dokka")
+        mavenLocal()
     }
 }
 
