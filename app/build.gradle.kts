@@ -44,6 +44,9 @@ android {
                 configureEach{
                     includeNonPublic.set(true)
                 }
+                customAssets = listOf(
+                    file("C:/Users/Ruben/Downloads/MyApplication/MyAPP/docs/images/logo-icon.svg")
+                )
             }
             footerMessage = "(c) 2023 Rubén García Segoviano"
             separateInheritedMembers = true
