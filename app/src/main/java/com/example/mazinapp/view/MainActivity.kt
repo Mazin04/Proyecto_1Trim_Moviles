@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         activity = this
 
         cargarNavBar()
-        cargaIniciar(savedInstanceState)
+        cargaInicial(savedInstanceState)
         configurarAparienciaNavBar()
     }
 
@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     /**
      * Se encarga de iniciar un fragmento según se inicia sesión.
      */
-    fun cargaIniciar(savedInstanceState: Bundle?) {
+    fun cargaInicial(savedInstanceState: Bundle?) {
         if (savedInstanceState == null){
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DriversFragment()).commit()
             navigationView.setCheckedItem(R.id.nav_piloto)

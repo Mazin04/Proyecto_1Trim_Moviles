@@ -42,7 +42,7 @@ android {
                     displayName.set("FormulaStats por Rubén García")
                 }
                 configureEach{
-                    includeNonPublic = true
+                    includeNonPublic.set(true)
                 }
             }
             footerMessage = "(c) 2023 Rubén García Segoviano"
@@ -51,6 +51,10 @@ android {
             mergeImplicitExpectActualDeclarations = false
             suppressObviousFunctions = true
         }
+    }
+
+    tasks.dokkaHtml.configure {
+        this.moduleName.set("FormulaStats")
     }
 
 
