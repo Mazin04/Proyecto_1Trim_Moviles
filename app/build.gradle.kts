@@ -38,6 +38,7 @@ android {
         pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
             footerMessage = "(c) 2023 Rubén García Segoviano"
             separateInheritedMembers = true
+            suppressInheritedMembers = true
             mergeImplicitExpectActualDeclarations = false
             suppressObviousFunctions = true
             dokkaSourceSets {
