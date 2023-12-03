@@ -58,7 +58,7 @@ class configFragment : Fragment() {
      * Configura el click en la barra de navegación para cambiar los fragmentos, este método llama
      * a [cargarFragmento]
      */
-    private fun cambiarFragmentoEnSeleccion(it: Int) {
+    fun cambiarFragmentoEnSeleccion(it: Int) {
         when (it) {
             R.id.insertarPiloto -> cargarFragmento(addFragment())
             R.id.eliminarPiloto -> cargarFragmento(deleteFragment())
@@ -70,7 +70,7 @@ class configFragment : Fragment() {
      * Carga el fragmento especificado en el contenedor de fragmentos.
      * @param fragment El fragmento a cargar.
      */
-    private fun cargarFragmento(fragment : Fragment) {
+    fun cargarFragmento(fragment : Fragment) {
         fragmentManager?.beginTransaction()?.replace(R.id.frameLayout, fragment)!!.commit()
     }
 

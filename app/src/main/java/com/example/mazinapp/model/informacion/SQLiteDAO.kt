@@ -58,7 +58,7 @@ class SQLiteDAO(val context : Context, name: String?, factory : SQLiteDatabase.C
         var INSTALADO = false
     }
 
-    override public fun installDatabaseFromAssets(){
+    override fun installDatabaseFromAssets(){
         val inputStream = context.assets.open("${SQLiteDAO.ASSETS_PATH}/${SQLiteDAO.DATABASE_NAME}.db")
 
         try {
@@ -73,12 +73,6 @@ class SQLiteDAO(val context : Context, name: String?, factory : SQLiteDatabase.C
         } catch (e : Throwable) {
             Toast.makeText(context, "La BBDD $DATABASE_NAME no se ha podido instalar", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    @Synchronized
-    private fun installOrUpdateIfNecessary() {
-        context.deleteDatabase(DATABASE_NAME)
-        installDatabaseFromAssets()
     }
 
     override fun onCreate(db: SQLiteDatabase?) {

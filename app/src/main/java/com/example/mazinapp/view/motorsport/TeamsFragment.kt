@@ -32,12 +32,12 @@ class TeamsFragment : Fragment(), SearchView.OnQueryTextListener {
     /**
      * El componente de búsqueda para filtrar equipos.
      */
-    private lateinit var searchView: SearchView
+    lateinit var searchView: SearchView
 
     /**
      * El RecyclerView que muestra la lista de equipos.
      */
-    private lateinit var recyclerView: RecyclerView
+    lateinit var recyclerView: RecyclerView
 
     /**
      * La lista de equipos a mostrar.
@@ -86,7 +86,7 @@ class TeamsFragment : Fragment(), SearchView.OnQueryTextListener {
      * para que se muestra la lista de circuitos.
      * @param view vista con la que se trabaja
      */
-    private fun configurarRecyclerView(view: View) {
+    fun configurarRecyclerView(view: View) {
         recyclerView = view.findViewById(R.id.recyclerEquipos)
         val layoutManager : RecyclerView.LayoutManager = GridLayoutManager(context, 3)
         recyclerView.layoutManager = layoutManager
@@ -98,7 +98,7 @@ class TeamsFragment : Fragment(), SearchView.OnQueryTextListener {
      * Configura el funcionamiento del buscador.
      * @param view vista con la que se trabaja
      */
-    private fun configurarBuscador(view: View) {
+    fun configurarBuscador(view: View) {
         searchView = view.findViewById(R.id.buscadorEquipos)
         searchView.setOnQueryTextListener(this)
         searchView.queryHint = "Busca la escudería"

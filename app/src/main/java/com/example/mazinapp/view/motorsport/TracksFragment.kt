@@ -32,11 +32,11 @@ class TracksFragment : Fragment(), SearchView.OnQueryTextListener {
     /**
      * El componente de búsqueda para filtrar circuitos.
      */
-    private lateinit var searchView: SearchView
+    lateinit var searchView: SearchView
     /**
      * El RecyclerView que muestra la lista de circuitos.
      */
-    private lateinit var recyclerView: RecyclerView
+    lateinit var recyclerView: RecyclerView
 
     /**
      * La lista de circuitos a mostrar.
@@ -86,7 +86,7 @@ class TracksFragment : Fragment(), SearchView.OnQueryTextListener {
      * para que se muestra la lista de circuitos.
      * @param view vista con la que se trabaja
      */
-    private fun configurarRecyclerView(view : View) {
+    fun configurarRecyclerView(view : View) {
         recyclerView = view.findViewById(R.id.recyclerCircuitos)
         val layoutManager : RecyclerView.LayoutManager = GridLayoutManager(context,2)
         recyclerView.layoutManager = layoutManager
@@ -98,7 +98,7 @@ class TracksFragment : Fragment(), SearchView.OnQueryTextListener {
      * Configura el funcionamiento del buscador.
      * @param view vista con la que se trabaja
      */
-    private fun configurarBuscador(view : View) {
+    fun configurarBuscador(view : View) {
         searchView = view.findViewById(R.id.buscadorCircuito)
         searchView.setOnQueryTextListener(this)
         searchView.queryHint = "Busca el circuito"

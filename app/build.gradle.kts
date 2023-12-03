@@ -1,3 +1,4 @@
+import org.jetbrains.dokka.DokkaDefaults.includeNonPublic
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.dokka.gradle.DokkaTask
@@ -36,16 +37,19 @@ android {
 
     tasks.withType<DokkaTask>().configureEach {
         pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
+            dokkaSourceSets {
+                named("main") {
+                    displayName.set("FormulaStats por Rubén García")
+                }
+                configureEach{
+                    includeNonPublic = true
+                }
+            }
             footerMessage = "(c) 2023 Rubén García Segoviano"
             separateInheritedMembers = true
             suppressInheritedMembers = true
             mergeImplicitExpectActualDeclarations = false
             suppressObviousFunctions = true
-            dokkaSourceSets {
-                named("main") {
-                    displayName.set("FormulaStats por Rubén García")
-                }
-            }
         }
     }
 

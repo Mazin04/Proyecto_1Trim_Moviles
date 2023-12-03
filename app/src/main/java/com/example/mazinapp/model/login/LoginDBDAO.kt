@@ -47,7 +47,7 @@ class LoginDBDAO(val context : Context,
     /**
      * Instala la base de datos desde los archivos al arrancar por primera vez la aplicación o en caso de error.
      */
-    private fun installDatabaseFromAssets(){
+    fun installDatabaseFromAssets(){
         val inputStream = context.assets.open("$ASSETS_PATH/${DATABASE_NAME}.db")
 
         try {
@@ -68,7 +68,7 @@ class LoginDBDAO(val context : Context,
      * Instala la base de datos desde los activos si es necesario o si la versión instalada es anterior.
      */
     @Synchronized
-    private fun installOrUpdateIfNecessary() {
+    fun installOrUpdateIfNecessary() {
         if (installedDatabaseIsOutdated()) {
             context.deleteDatabase(DATABASE_NAME)
             installDatabaseFromAssets()
@@ -78,7 +78,7 @@ class LoginDBDAO(val context : Context,
     /**
      * Obtiene el objeto [SharedPreferences] para almacenar la versión de la base de datos instalada.
      */
-    private val preferences: SharedPreferences = context.getSharedPreferences(
+    val preferences: SharedPreferences = context.getSharedPreferences(
         "${context.packageName}.database_versions",
         Context.MODE_PRIVATE
     )
@@ -87,13 +87,13 @@ class LoginDBDAO(val context : Context,
      * Comprueba si la base de datos instalada es antigua o no.
      * @return 'true' si es antigua, 'false' si no lo es.
      */
-    private fun installedDatabaseIsOutdated(): Boolean {
+    fun installedDatabaseIsOutdated(): Boolean {
         return preferences.getInt(DATABASE_NAME, 0) < DATABASE_VERSION
     }
     /**
      * Escribe la versión de la base de datos instalada en las preferencias.
      */
-    private fun writeDatabaseVersionInPreferences() {
+    fun writeDatabaseVersionInPreferences() {
         preferences.edit().apply {
             putInt(DATABASE_NAME, DATABASE_VERSION)
             apply()

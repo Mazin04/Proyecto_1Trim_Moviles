@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     /**
      * Configura la barra lateral y su apariencia durante la instancia de esta clase.
      */
-    private fun cargarNavBar() {
+    fun cargarNavBar() {
         toolbar = findViewById(R.id.toolbar)
         toolbarText = findViewById(R.id.toolbarText)
         setSupportActionBar(toolbar)
@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     /**
      * Se encarga de iniciar un fragmento según se inicia sesión.
      */
-    private fun cargaIniciar(savedInstanceState: Bundle?) {
+    fun cargaIniciar(savedInstanceState: Bundle?) {
         if (savedInstanceState == null){
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DriversFragment()).commit()
             navigationView.setCheckedItem(R.id.nav_piloto)
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
      * Método invocado al crearse la barra de navegación que controla si aparece la opción de configuración
      * en base de si el usuario es admin o no.
      */
-    private fun configurarAparienciaNavBar() {
+    fun configurarAparienciaNavBar() {
         val menu = navigationView.menu
         val configItem = menu.findItem(R.id.nav_config)
         configItem.isVisible = AplicacionController.rol.equals("admin")
@@ -195,7 +195,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
      *
      * @param fragmento El fragmento a cargar.
      */
-    private fun cargarFragment(fragmento : Fragment){
+    fun cargarFragment(fragmento : Fragment){
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragmento).commit()
         overridePendingTransition(R.anim.fade_out, R.anim.fade_in)
     }

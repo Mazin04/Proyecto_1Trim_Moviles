@@ -26,27 +26,53 @@ import com.google.android.material.textfield.TextInputLayout
 import org.mazinapp.rubengarcia.R
 import java.io.File
 
+/**
+ * Actividad principal para el inicio de sesión y registro de usuarios.
+ *
+ * Esta actividad permite a los usuarios iniciar sesión o registrarse en la aplicación.
+ * Proporciona funcionalidades para cambiar entre los modos de inicio de sesión y registro,
+ * además de validar y procesar la información proporcionada por los usuarios.
+ *
+ * @property controlador El controlador de la aplicación que gestiona la lógica de la base de datos y la aplicación.
+ * @property activity La referencia a la actividad actual.
+ * @property imgTwt ImageView para abrir el enlace de Twitter.
+ * @property imgGit ImageView para abrir el enlace de GitHub.
+ * @property imgInsta ImageView para abrir el enlace de Instagram.
+ * @property txtUser TextInputEditText para el nombre de usuario.
+ * @property txtPassword TextInputEditText para la contraseña del usuario.
+ * @property txtNombre TextInputEditText para el nombre del usuario al registrarse.
+ * @property btnLoginRegister Botón para realizar la acción de inicio de sesión o registro.
+ * @property msgLoginRegister TextView para cambiar entre los modos de inicio de sesión y registro.
+ * @property llRegister LinearLayout que sirve como Easter Egg para reproducir sonidos.
+ * @property view La vista raíz de la actividad.
+ * @property reproduciendo Indica si se está reproduciendo un sonido como parte del Easter Egg.
+ * @property isLogin Indica si el usuario está en modo de inicio de sesión.
+ * @property valid Indica si la contraseña proporcionada durante el registro cumple con los requisitos.
+ *
+ * @constructor Crea una instancia de [LoginRegisterActivity].
+ * @author [Rubén García](https://github.com/Mazin04)
+ */
 class LoginRegisterActivity : AppCompatActivity() {
     // Agrega el controlador y controla elementos del telefono
     var controlador : AplicacionController? = null
-    private lateinit var activity: Activity
+    lateinit var activity: Activity
 
     // Elementos
-    private lateinit var imgTwt : ImageView
-    private lateinit var imgGit : ImageView
-    private lateinit var imgInsta : ImageView
-    private lateinit var txtUser : TextInputEditText
-    private lateinit var txtPassword : TextInputEditText
-    private lateinit var txtNombre : TextInputEditText
-    private lateinit var btnLoginRegister : Button
-    private lateinit var msgLoginRegister : TextView
-    private lateinit var llRegister : LinearLayout
-    private lateinit var view : View
+    lateinit var imgTwt : ImageView
+    lateinit var imgGit : ImageView
+    lateinit var imgInsta : ImageView
+    lateinit var txtUser : TextInputEditText
+    lateinit var txtPassword : TextInputEditText
+    lateinit var txtNombre : TextInputEditText
+    lateinit var btnLoginRegister : Button
+    lateinit var msgLoginRegister : TextView
+    lateinit var llRegister : LinearLayout
+    lateinit var view : View
 
     //Variables propias
-    private var reproduciendo : Boolean = false
-    private var isLogin : Boolean = false
-    private var valid : Boolean = false
+    var reproduciendo : Boolean = false
+    var isLogin : Boolean = false
+    var valid : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -139,7 +165,13 @@ class LoginRegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun registrarIniciarSesion(view : View): Boolean {
+    /**
+     * Inicia sesión o registra al usuario según el modo actual.
+     *
+     * @param view La vista actual.
+     * @return `true` si la acción fue exitosa, `false` de lo contrario.
+     */
+    fun registrarIniciarSesion(view : View): Boolean {
         if(isLogin){
             return iniciarSesion(view)
         } else {
@@ -147,7 +179,13 @@ class LoginRegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun iniciarSesion(view: View) : Boolean {
+    /**
+     * Inicio sesión del usuario.
+     *
+     * @param view La vista actual.
+     * @return `true` si el inicio de sesión fue exitoso, `false` de lo contrario.
+     */
+    fun iniciarSesion(view: View) : Boolean {
         // Variables
         var username: String = txtUser.text.toString()
         var password: String = txtPassword.text.toString()
@@ -177,7 +215,14 @@ class LoginRegisterActivity : AppCompatActivity() {
         }
         return false
     }
-    private fun registrar(view : View) : Boolean {
+
+    /**
+     * Registra a un nuevo usuario.
+     *
+     * @param view La vista actual.
+     * @return `true` si el registro fue exitoso, `false` de lo contrario.
+     */
+    fun registrar(view : View) : Boolean {
         var name : String = txtNombre.text.toString()
         var username : String = txtUser.text.toString()
         var password : String = txtPassword.text.toString()
@@ -211,13 +256,19 @@ class LoginRegisterActivity : AppCompatActivity() {
         return false
     }
 
-    // Cerrar teclado
-    private fun cerrarTeclado(view: View) {
+    /**
+     * Cierra el teclado cuando se le llama
+     *
+     * @param view La vista raíz del fragmento.
+     */
+    fun cerrarTeclado(view: View) {
         val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
-    // Cambio de la interfaz para el registro o inicio de sesión
-    private fun cambiarInicioSesión() {
+    /**
+     * Cambia la interfaz para el modo de inicio de sesión.
+     */
+    fun cambiarInicioSesión() {
         findViewById<TextInputLayout>(R.id.txtLayoutNombre).visibility = TextInputLayout.GONE
         findViewById<TextInputLayout>(R.id.txtLayoutNombre).startAnimation(
             AnimationUtils.loadAnimation(this, R.anim.fade_out).apply {
@@ -229,8 +280,11 @@ class LoginRegisterActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.txtNew).text = "No tienes cuenta? Registrate"
         findViewById<TextView>(R.id.txtRegister).text = "Iniciar Sesión"
     }
-    private fun cambiarRegistrar() {
 
+    /**
+     * Cambia la interfaz para el modo de registro.
+     */
+    fun cambiarRegistrar() {
         findViewById<TextInputLayout>(R.id.txtLayoutNombre).visibility = TextInputLayout.VISIBLE
         findViewById<TextInputLayout>(R.id.txtLayoutNombre).startAnimation(
             AnimationUtils.loadAnimation(this, R.anim.fade_in).apply {
@@ -243,8 +297,9 @@ class LoginRegisterActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.txtRegister).text = "Regístrate"
     }
 
-    // Encargado de cerrar
-    @SuppressLint("MissingSuperCall")
+    /**
+     * Maneja el evento de retroceso y muestra un diálogo de confirmación para cerrar la aplicación.
+     */    @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("¿Seguro que quiere cerrar la aplicación?").setMessage("No lo haga, le echaremos de menos").setPositiveButton("Sí", DialogInterface.OnClickListener { dialog, which ->
@@ -254,7 +309,13 @@ class LoginRegisterActivity : AppCompatActivity() {
         }).show()
     }
 
-
+    /**
+     * Verifica si la base de datos con el nombre proporcionado existe en la aplicación.
+     *
+     * @param context El contexto de la aplicación.
+     * @param nombre El nombre de la base de datos.
+     * @return `true` si la base de datos existe, `false` de lo contrario.
+     */
     fun existeDDBB(context : Context, nombre : String) : Boolean{
         var fileDDBB : File = context.getDatabasePath(nombre)
         return fileDDBB.exists()

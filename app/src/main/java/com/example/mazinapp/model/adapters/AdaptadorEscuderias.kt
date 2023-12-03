@@ -24,7 +24,7 @@ import java.util.stream.Collectors
  * @constructor Crea una instancia del adaptador con la lista de escuderías, el contexto y la lista original.
  * @author [Rubén García](https://github.com/Mazin04)
  */
-class AdaptadorEscuderias(private val listaEscuderias : ArrayList<Escuderia>, it : Context, listaOriginal : ArrayList<Escuderia>) : RecyclerView.Adapter<AdaptadorEscuderias.EscuderiaHolder>() {
+class AdaptadorEscuderias(val listaEscuderias : ArrayList<Escuderia>, it : Context, listaOriginal : ArrayList<Escuderia>) : RecyclerView.Adapter<AdaptadorEscuderias.EscuderiaHolder>() {
     /**
      * Contexto a usar de la vista para trabajar con ella.
      */
@@ -115,7 +115,7 @@ class AdaptadorEscuderias(private val listaEscuderias : ArrayList<Escuderia>, it
      * @param view La vista del elemento.
      * @param position La posición del elemento en la lista.
      */
-    private fun setAnimation(view : View, position : Int){
+    fun setAnimation(view : View, position : Int){
         var slideIn : Animation = AnimationUtils.loadAnimation(context, com.airbnb.lottie.R.anim.abc_fade_in)
         view.startAnimation(slideIn)
     }

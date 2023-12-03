@@ -22,7 +22,7 @@ import java.util.stream.Collectors
  * @constructor Crea una instancia del adaptador con la lista de pilotos, el contexto y la lista original.
  * @author [Rubén García](https://github.com/Mazin04)
  */
-class AdaptadorPilotos(private val listaPilotos: ArrayList<Piloto>, contexto : Context, listaOriginal : ArrayList<Piloto>): RecyclerView.Adapter<AdaptadorPilotos.PilotosHolder>() {
+class AdaptadorPilotos(val listaPilotos: ArrayList<Piloto>, contexto : Context, listaOriginal : ArrayList<Piloto>): RecyclerView.Adapter<AdaptadorPilotos.PilotosHolder>() {
     /**
      * Contexto a usar de la vista para trabajar con ella.
      */
@@ -123,7 +123,7 @@ class AdaptadorPilotos(private val listaPilotos: ArrayList<Piloto>, contexto : C
      * @param view La vista del elemento.
      * @param position La posición del elemento en la lista.
      */
-    private fun setAnimation(view : View, position : Int){
+    fun setAnimation(view : View, position : Int){
         var slideIn : Animation = AnimationUtils.loadAnimation(context, R.anim.slide_in_left_right)
         view.startAnimation(slideIn)
     }
